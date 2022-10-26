@@ -10,7 +10,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 
 <h2>Video Demonstration</h2>
 
-- <a href="https://www.youtube.com/watch?v=K7T_JjvEamg>" target="_blank_">OsTicket Install</a>
+- <a href="https://youtu.be/5glab1_nnMo" target="_blank_">OsTicket Install</a>
 
 <h2>Environments and Technologies Used</h2>
 
