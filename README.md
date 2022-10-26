@@ -25,62 +25,46 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <h2>Prerequisites</h2>
 
 -(Create Virtual Machine in Azure)
--Create a Resource Group
--Create a Windows 10 Virtual Machine (VM) with 2-4 Virtual CPUs
--When creating the VM, allow it to create a new Virtual Network (Vnet)
--Part 2 (Installation)
-! ATTENTION !
-I don’t recommend trying to learn how to do the rest of this lab “from memory” because there are a lot of arbitrary steps. I do recommend just following me along in the video every time for this section. Focus on understanding!!
-Connect to your Virtual Machine with Remote Desktop
--Install / Enable IIS in Windows
--Install Web Platform Installer (download from within lab files: link)
--Open after installation
--Add MySQL 5.5 (it will ask for credentials to be created later)
--Name: root
--Password: Password1
--Add All simple versions of x86 PHP up until 7.3
--Fix any failures if required (download from within lab files: link)
-Install PHP Version 7.3.8 (or any other version if necessary, archives)
-Install PHP Manager 1.5.0 for IIS 10 (folder you unzipped on the desktop)
-Install Microsoft Visual C++ 2009 Redistributable Package
-Install osTicket v1.15.8
-Download osTicket (download from within lab files: link)
-Extract and copy the “upload” folder INTO c:\inetpub\wwwroot
-Within c:\inetpub\wwwroot, Rename “upload” to “osTicket”
-Reload IIS (Open IIS, Stop and Start the server)
-Go to sites -> Default -> osTicket
-On the right, click “Browse *:80”
-Enable Extensions in IIS: Note that some extensions are not enabled
-Go back to IIS, sites -> Default -> osTicket
-Double-click PHP Manager
-Click “Enable or disable an extension”
-Enable: php_imap.dll
-Enable: php_intl.dll
-Enable: php_opcache.dll
-Refresh the osTicket site in your browse, observe the changes
-Rename:
-        From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php
-        To: C:\inetpub\wwwroot\osTicket\include\ost-config.php
-Assign Permissions: ost-config.php
-Disable inheritance -> Remove All
-New Permissions -> Everyone -> All
-Continue Setting up osTicket in the browser (click Continue)
-Name Helpdesk
-Default email (receives email from customers)
-Download and Install HeidiSQL (download from within lab files: link)
-Create a new session, root/Password1
-Connect to the session
-Create a database called “osTicket”
-Continue Setting up osticket in the browser
-MySQL Database: osTicket
-MySQL Username: root
-MySQL Password: Password1
-Click “Install Now!”
-Congratulations, hopefully it is installed with no errors!
-Clean up
-Delete: C:\inetpub\wwwroot\osTicket\setup
-Set Permissions to “Read” only: C:\inetpub\wwwroot\osTicket\include\ost-config.php
-Login to the osTicket Admin Panel (http://localhost/osTicket/scp/login.php)
 
-<h2>Installation Steps</h2>
+OSTICKET 
+
+Your going to need to download ;
+Web Platform Installer (IIS.net)
+IIS 1.5.0 (IIS.net)
+HeidiSQL(heidisql.com)
+
+.Enable IIS (control panel, uninstall a program, Turn windows features on or off, select internet information services, select ok) This will create a “inetpub” folder in disk C. This creates a web server that osticket will run on.
+
+.Download web platform installer (get from google)
+.Download MySQL, PHP up to 7.3 (inside web platform installer (PHP will fail and must be manually downloaded)
+
+.Download PHP lastest version (PHP.net)(extract folder once downloaded and copy folder to local disk, program 86x, PHP)
+.
+.Install PHP manager  (iis.net) download PHP manager 1.5.0 for iis 10
+
+.Open IIS ( run as administrator)click php manager, under “PHP SETUP” click register New php version, search for the new php folder you just put in program 86x/PHP folder, open folder and select the “php-cgi.exe” then click ok.
+
+Download OsTicket (osticket.com)extract folder, copy and paste “upload” folder to “wwwroot” folder inside the “inetpub” folder.
+Rename “upload” folder to “osticket “.
+
+Open IIS, refresh page, “osticket “ should pop up under “sites.” Click on “osticket”, then click “Browse 80(http)”, localhost/osticket/setup/ will load on webpage.
+
+On the webpage you’ll notice all recommended extensions aren’t enabled; we will enable them with PHP manager. Open PHP manager in IIS, click “enable or disable an extension” under “PHP EXTENSIONS”, enable imap, intl, gd (if not enable) and opcache. Apcu will not be in the list. Refresh osticket page, only the last two options should be left. Click “continue.”
+
+Last step is to create The “ost-config.php file. Go back to wwwroot folder, go to osticket, click include, go to “ost-sampleconfig”, copy and paste it in the same folder, rename the copy to“ost-config”
+Right click it and click “properties” then click “security “ click “users”, click edit to change permission, click “users” again, under “Permission for Users” click “Full Control”, then click apply, then click ok. This will allow you full Access to Osticket. Go back to Osticket and click continue.
+
+You should now see Osticket Basic Installation. Fill out the info for your help desk and admin user.
+
+Once you get to Database settings; you must first create the database. Download “Heidisql” (heidisql.com) click “installer 32/64 bit combined “ once finished your vm may restart. Open Heidisql, click “New”. Username will remain root, enter password you’ve chose at the beginning of lab, click “open”. This will open a connection to database. Right click and “create new” and select “database” enter “Osticket “ for name.
+
+Go back to Osticket and fill in database info.
+MySQL will be “osticket “ 
+Username will be “root”
+Password will be the password you chose.
+After you enter the info click install.
+
+If done right, CONGRATULATIONS!! You installed Osticket 
+
+
 
